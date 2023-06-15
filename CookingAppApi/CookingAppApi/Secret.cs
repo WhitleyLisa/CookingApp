@@ -2,7 +2,7 @@
 {
     public class Secret
     {
-        private static readonly string apiKey = "";
+        private static readonly string apiKey = "hsbdjfhs";
 
         public static string ApiKey
         {
