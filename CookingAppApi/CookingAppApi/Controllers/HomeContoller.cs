@@ -17,10 +17,10 @@ namespace CookingAppApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<Rootobject>> GetTickets()
+        public async Task<ActionResult<Rootobject>> GetRecipe()
         {
-
-            return await _recipeApiService.GetRecipe("");        }
+            string searchTerm = "Peanut Butter";
+            return await _recipeApiService.GetRecipe($"?from=0&size=5&q={searchTerm}");        }
 
     }
 }

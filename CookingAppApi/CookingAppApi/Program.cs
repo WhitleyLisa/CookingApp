@@ -16,7 +16,7 @@ builder.Services.AddHttpClient<RecipeService>(c =>
 {
     // string apiKey = builder.Configuration.GetValue<string>("AnimalApi:ApiKey");
     string apiKey = Secret.ApiKey;
-    c.BaseAddress = new Uri("https://tasty.p.rapidapi.com/recipes/list?from=0&size=5");
+    c.BaseAddress = new Uri("https://tasty.p.rapidapi.com/recipes/list/");
     c.DefaultRequestHeaders.Add("X-RapidAPI-Key", apiKey);
     c.DefaultRequestHeaders.Add("X-RapidAPI-Host", "tasty.p.rapidapi.com");
 });
