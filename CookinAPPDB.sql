@@ -28,19 +28,18 @@ CREATE TABLE Recipe (
    
 );
 
-CREATE TABLE Favorites (
+DROP TABLE dbo.Favorites;
+
+ CREATE TABLE Favorites (
 	
-    userID int not null,
-    recipeId int not null,   
+	favoriteId int NOT NULL IDENTITY(1,1)  PRIMARY KEY,
+	userID int FOREIGN KEY (userID) REFERENCES Users(userID),    
+    recipeId int FOREIGN KEY (recipeId) REFERENCES Recipe(recipeId),   
 	IsFavorite bit,
-	favoriteDescription nvarchar(max),
-	CONSTRAINT PK_Favorite PRIMARY KEY (userID, recipeId),
-	CONSTRAINT FK_User FOREIGN KEY (userID) REFERENCES Users(userID),
-    CONSTRAINT FK_Recipe FOREIGN KEY (recipeId) REFERENCES Recipe(recipeId),
-	 
+	favoriteDescription nvarchar(max)
     
    
-);
+); 
 
 
 CREATE TABLE Nutrition (
