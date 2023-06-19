@@ -64,6 +64,14 @@ CREATE TABLE Nutrition (
 	 
 	 );
 
+	  CREATE TABLE Credits (
+       creditId int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	   recipeId int FOREIGN KEY (recipeId) REFERENCES Recipe(recipeId),
+	   userID int FOREIGN KEY (userID) REFERENCES Users(userID)  
+	  
+	 
+	 );
+
 
 	/* INSERT INTO Favorites (userID, recipeId, IsFavorite, favoriteDescription)
 VALUES
