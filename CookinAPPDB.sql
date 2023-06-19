@@ -54,9 +54,40 @@ CREATE TABLE Nutrition (
 	 
 	 );
 
+	 CREATE TABLE Instruction (
+     instructionId int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	 recipeId int FOREIGN KEY (recipeId) REFERENCES Recipe(recipeId),
+	 postion int, 
+	 starttime int,
+	 endtime int,
+     step nvarchar(max),   
+	 
+	 );
 
 
+	/* INSERT INTO Favorites (userID, recipeId, IsFavorite, favoriteDescription)
+VALUES
+    (1, 1, 1, 'Spaghetti Bolognese')
+    ;
 
+	INSERT INTO Users (userName, userPassword, userEmail, userPhone)
+VALUES
+    ('John Doe', 'password123', 'john.doe@example.com', '1234567890'),
+    ('Jane Smith', 'abc456', 'jane.smith@example.com', '9876543210'),
+    ('Mike Johnson', 'mikepass', 'mike.johnson@example.com', '5551234567'),
+    ('Emily Davis', 'emily123', 'emily.davis@example.com', '7778889999'),
+    ('David Brown', 'pass123', 'david.brown@example.com', '4445556666');
+
+
+	INSERT INTO Recipe (recipeName, videoUrl, description)
+VALUES
+    ('Spaghetti Bolognese', 'https://www.youtube.com/watch?v=xyz123', 'Classic Italian pasta dish with a meaty sauce.'),
+    ('Chicken Curry', 'https://www.youtube.com/watch?v=abc456', 'Flavorful curry made with tender chicken and aromatic spices.'),
+    ('Chocolate Chip Cookies', 'https://www.youtube.com/watch?v=pqr789', 'Homemade cookies loaded with chocolate chips.'),
+    ('Vegetable Stir-Fry', 'https://www.youtube.com/watch?v=def789', 'Healthy and colorful mix of fresh vegetables cooked quickly.'),
+    ('Grilled Salmon', 'https://www.youtube.com/watch?v=ghi456', 'Delicious and nutritious salmon fillets grilled to perfection.');
+
+*/
 
 
 
