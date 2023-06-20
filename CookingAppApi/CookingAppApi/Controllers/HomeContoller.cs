@@ -20,7 +20,7 @@ namespace CookingAppApi.Controllers
         public async Task<ActionResult<Rootobject>> GetRecipe()
         {
             string searchTerm = "Peanut Butter";
-            return await _recipeApiService.GetRecipe($"?from=0&size=5&q={searchTerm}");        }
+            return await _recipeApiService.GetRecipe($"?from=0&size=2&q={searchTerm}");        }
 
     }
 }
