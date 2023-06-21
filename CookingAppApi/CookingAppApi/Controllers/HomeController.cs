@@ -7,11 +7,11 @@ namespace CookingAppApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class HomeContoller: ControllerBase
+    public class HomeController: ControllerBase
     {
         private readonly RecipeService _recipeApiService;
 
-        public HomeContoller(RecipeService recipeApiService)
+        public HomeController(RecipeService recipeApiService)
         {
             _recipeApiService = recipeApiService;
         }

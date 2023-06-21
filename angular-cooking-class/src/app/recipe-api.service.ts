@@ -13,7 +13,7 @@ export class RecipeApiService{
   private readonly url = 'https://localhost:7276/api';
   
   GetRecipe(): Observable<Recipe[]>{
-    return this.http.get<Recipe[]>(this.url + '/HomeController');
+    return this.http.get<Recipe[]>(this.url + '/Home');
   }
   
 }
