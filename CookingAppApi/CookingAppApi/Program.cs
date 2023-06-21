@@ -1,4 +1,5 @@
 using CookingAppApi;
+using CookingAppApi.Models;
 using CookingAppApi.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -21,10 +22,21 @@ builder.Services.AddHttpClient<RecipeService>(c =>
     c.DefaultRequestHeaders.Add("X-RapidAPI-Host", "tasty.p.rapidapi.com");
 });
 
+// Add services to the container.
+builder.Services.AddScoped<RecipeDbContext>();
+
+// Add Cors policy
+builder.Services.AddCors(
+    options =>
+    {
+        options.AddPolicy(
+            name: "AllowAny",
+            builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+            );
+    }
+    );
+
 var app = builder.Build();
-
-
-
 
 
 // Configure the HTTP request pipeline.
@@ -34,7 +46,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
+app.UseCors("AllowAny");
 
 app.UseHttpsRedirection();
 
