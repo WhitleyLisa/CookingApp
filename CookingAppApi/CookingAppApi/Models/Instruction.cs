@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-
+using System.Diagnostics.CodeAnalysis;
 namespace CookingAppApi.Models;
+
 
 public partial class Instruction
 {

@@ -52,6 +52,8 @@ public class Nutrition
 
 public class Instruction
 {
+    internal readonly int RecipeId;
+
     public int id { get; set; }
     public int position { get; set; }
     public string display_text { get; set; }

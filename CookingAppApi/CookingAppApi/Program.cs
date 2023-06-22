@@ -2,6 +2,7 @@ using CookingAppApi;
 using CookingAppApi.Models;
 using CookingAppApi.Services;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,11 +10,26 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddScoped<RecipeDbContext>();
 
-// Add services to the container.
+// Add Cors policy
+builder.Services.AddCors(
+    options =>
+    {
+        options.AddPolicy(
+            name: "AllowAny",
+            builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+            );
+    }
+    );
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.Configure<SwaggerGenOptions>(options =>
+{
+    options.CustomSchemaIds(type => type.FullName);
+});
+
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddHttpClient<RecipeService>(c =>
@@ -27,16 +43,6 @@ builder.Services.AddHttpClient<RecipeService>(c =>
 
 
 
-// Add Cors policy
-builder.Services.AddCors(
-    options =>
-    {
-        options.AddPolicy(
-            name: "AllowAny",
-            builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
-            );
-    }
-    );
 
 var app = builder.Build();
 
