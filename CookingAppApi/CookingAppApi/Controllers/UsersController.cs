@@ -64,7 +64,7 @@ namespace CookingAppApi.Controllers
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.UserId }, user);
+            return CreatedAtAction("GetUserId", new { id = user.UserId }, user);
         }
 
     }
