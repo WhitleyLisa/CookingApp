@@ -7,6 +7,9 @@ using System.Diagnostics;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<RecipeDbContext>();
+
+// Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -22,8 +25,7 @@ builder.Services.AddHttpClient<RecipeService>(c =>
     c.DefaultRequestHeaders.Add("X-RapidAPI-Host", "tasty.p.rapidapi.com");
 });
 
-// Add services to the container.
-builder.Services.AddScoped<RecipeDbContext>();
+
 
 // Add Cors policy
 builder.Services.AddCors(

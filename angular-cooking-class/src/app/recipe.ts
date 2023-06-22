@@ -2,12 +2,12 @@ export interface Recipe {
         count: number;
         results: Result[];
       }
-      interface Result {
-        id: number;
-        name: string;
-        description: string;
+export  interface Result {
+        id?: number;
+        name?: string;
+        description?: string;
         instructions: Instruction[];
-        nutrition: Nutrition;
+        nutrition?: Nutrition;
         yields: string;
         keywords: object;
         num_servings: number;
@@ -22,7 +22,7 @@ export interface Recipe {
         prep_time_minutes: object;
         sections: Section[];
       }
-      interface Nutrition {
+export  interface Nutrition {
         carbohydrates: number;
         fiber: number;
         updated_at: Date;
@@ -31,7 +31,7 @@ export interface Recipe {
         calories: number;
         sugar: number;
       }
-      interface Instruction {
+export  interface Instruction {
         id: number;
         position: number;
         display_text: string;
@@ -39,16 +39,16 @@ export interface Recipe {
         appliance: object;
         end_time: number;
       }
-      interface Ingredient {
+export  interface Ingredient {
         id: number;
         name: string;
       }
-      interface Section {
+export  interface Section {
         name: string;
         position: number;
         components: Component[];
       }
-      interface Component {
+export  interface Component {
         id: number;
         position: number;
         raw_text: string;

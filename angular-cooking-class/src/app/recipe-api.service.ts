@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Recipe } from './recipe';
+import { Recipe, Result } from './recipe';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,8 +12,8 @@ export class RecipeApiService{
 
   private readonly url = 'https://localhost:7276/api';
   
-  GetRecipe(): Observable<Recipe[]>{
-    return this.http.get<Recipe[]>(this.url + '/Home');
+  GetRecipe(): Observable<Result[]>{
+    return this.http.get<Result[]>(this.url + '/Home');
   }
   
 }

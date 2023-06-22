@@ -1,1 +1,53 @@
 <p>home works!</p>
+<ul>
+<li *ngFor="let result of results">
+    <div>
+      <div>
+          <h1>{{ result.name }}</h1>
+          <img src="{{ result.thumbnail_url }}" alt="{{ result.thumbnail_alt_text }}" class="small-image">
+
+          <h3>Description: {{ result.description }}</h3>
+          <ul>
+            <li *ngFor="let instruction of result.instructions">
+              {{ instruction.display_text }}
+            </li>
+          </ul>
+
+      </div>
+    </div>
+  </li>
+</ul>
+
+<p></p>
+
+<!-- <div>
+    <h1>{{ recipe.name }}</h1>
+    <p>Description: {{ recipe.description }}</p>
+    <p>Yields: {{ recipe.yields }}</p>
+    <p>Number of Servings: {{ recipe.num_servings }}</p>
+    
+    <h2>Instructions</h2>
+    <ol>
+      <li *ngFor="let instruction of recipe.instructions">{{ instruction.display_text }}</li>
+    </ol>
+    
+    <h2>Nutrition Information</h2>
+    <p>Calories: {{ recipe.nutrition.calories }}</p>
+    <p>Carbohydrates: {{ recipe.nutrition.carbohydrates }}</p>
+    <p>Protein: {{ recipe.nutrition.protein }}</p>
+    <p>Fat: {{ recipe.nutrition.fat }}</p>
+    <p>Fiber: {{ recipe.nutrition.fiber }}</p>
+    <p>Sugar: {{ recipe.nutrition.sugar }}</p>
+    
+    <h2>Ingredients</h2>
+    <ul>
+      <li *ngFor="let section of recipe.sections">
+        <h3>{{ section.name }}</h3>
+        <ul>
+          <li *ngFor="let component of section.components">
+            {{ component.raw_text }}
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div> -->
