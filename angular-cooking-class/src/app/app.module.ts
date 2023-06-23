@@ -8,7 +8,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { LoginComponent } from './login/login.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { FavoritesComponent } from './favorites/favorites.component';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +22,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule
     
   ],
   providers: [],

@@ -12,8 +12,8 @@ export class RecipeApiService{
 
   private readonly url = 'https://localhost:7276/api';
   
-  GetRecipe(): Observable<Result[]>{
-    return this.http.get<Result[]>(this.url + '/Home');
+  GetRecipe(recipeName: string): Observable<Result[]>{
+    return this.http.get<Result[]>(this.url + '/Home/GetRecipe/' + recipeName);
   }
   
 }

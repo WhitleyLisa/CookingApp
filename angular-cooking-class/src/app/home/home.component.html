@@ -1,4 +1,11 @@
 <p>home works!</p>
+
+<form (ngSubmit)="onSubmit(recipeForm)" #recipeForm="ngForm">
+  <label for="recipeName">Recipe Name:</label>
+  <input type="text" id="recipeName" name="recipeName" ngModel required>
+  <button type="submit">Get Recipe</button>
+</form>
+
 <ul>
 <li *ngFor="let result of results">
     <div>

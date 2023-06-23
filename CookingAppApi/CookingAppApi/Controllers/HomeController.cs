@@ -7,7 +7,7 @@ namespace CookingAppApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class HomeController: ControllerBase
+    public class HomeController : ControllerBase
     {
         private readonly RecipeService _recipeApiService;
 
@@ -16,10 +16,10 @@ namespace CookingAppApi.Controllers
             _recipeApiService = recipeApiService;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<Rootobject>> GetRecipe()
+        [HttpGet("GetRecipe/{name}")]
+        public async Task<ActionResult<Rootobject>> GetRecipe(string name)
         {
-            string searchTerm = "Peanut Butter";
+            string searchTerm = name;
             return await _recipeApiService.GetRecipe($"?from=0&size=2&q={searchTerm}");        }
 
     }
