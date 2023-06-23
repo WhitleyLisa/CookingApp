@@ -25,10 +25,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
-//builder.Services.Configure<SwaggerGenOptions>(options =>
-//{
-//    options.CustomSchemaIds(type => type.FullName);
-//});
+builder.Services.Configure<SwaggerGenOptions>(options =>
+{
+    options.CustomSchemaIds(type => type.FullName);
+});
 
 builder.Services.AddSwaggerGen();
 
