@@ -1,14 +1,23 @@
-<p>home works!</p>
 
-<form (ngSubmit)="onSubmit(recipeForm)" #recipeForm="ngForm">
-  <label for="recipeName">Recipe Name:</label>
+
+<form (ngSubmit)="onSubmit(recipeForm)" #recipeForm="ngForm" class="new-recipe-form">
+  <label for="recipeName" class="search-recipe-labels">Search by Recipe Name: </label>
   <input type="text" id="recipeName" name="recipeName" ngModel required>
-  <button type="submit">Get Recipe</button>
+  <button type="submit" class="search-recipe-button">Get Recipe</button>
+  <span class="nav-separator">         |         </span>
+  <label for="recipeName" class="search-recipe-labels">Search by Ingredients: </label>
+  <input type="text" id="recipeName" name="recipeName" ngModel required>
+  <button type="submit" class="search-recipe-button">Get Recipe</button>
 </form>
 
+<!-- <form (ngSubmit)="onSubmit(recipeForm)" #recipeForm="ngForm" class="new-recipe-form">
+  <label for="recipeName">Search by Ingredients: </label>
+  <input type="text" id="recipeName" name="recipeName" ngModel required>
+  <button type="submit" class="search-recipe-button">Get Recipe</button>
+</form> -->
 <ul>
 <li *ngFor="let result of results">
-    <div>
+    <div class="item-wrapper">
       <div>
           <h1>{{ result.name }}</h1>
           <img src="{{ result.thumbnail_url }}" alt="{{ result.thumbnail_alt_text }}" class="small-image">
@@ -19,7 +28,7 @@
               {{ instruction.display_text }}
             </li>
           </ul>
-          <button (click)="updateFavoriteStatus(1, result.id!, result.name!, result.description!)">
+          <button (click)="updateFavoriteStatus(1, result.id!, result.name!, result.description!)" class="search-recipe-button">
             Add to Favorites
           </button>
       </div>
