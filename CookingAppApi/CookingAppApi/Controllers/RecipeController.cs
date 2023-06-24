@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using CookingAppApi.Model;
 
 namespace CookingAppApi.Controllers
 {
@@ -139,6 +140,21 @@ namespace CookingAppApi.Controllers
             }
 
             return lastRecipe;
+        }
+
+        [HttpGet("GetFavoriteRecipe/{id}")]
+        public async Task<ActionResult<List<FavoriteRecipe>>> GetFavoriteRecipe(int id)
+        {
+            if (_context.FavoriteRecipe == null)
+            {
+                return NotFound();
+            }
+            var favorite = await _context.FavoriteRecipe.Where(f => f.UserId == id).ToListAsync();
+            if (favorite == null)
+            {
+                return NotFound();
+            }
+            return favorite;
         }
     }
 }
