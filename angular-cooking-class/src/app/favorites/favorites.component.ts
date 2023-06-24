@@ -5,6 +5,8 @@ import { NgForm } from '@angular/forms';
 import { Favorite } from '../favorite';
 import { Result } from '../recipe';
 import { UserRecipe } from '../user-recipe';
+import { Favoriterecipe } from '../favoriterecipe';
+import { Router } from '@angular/router';
 
 
 
@@ -14,23 +16,24 @@ import { UserRecipe } from '../user-recipe';
   styleUrls: ['./favorites.component.css']
 })
 export class FavoritesComponent implements OnInit{
-  userFavorites: any[] = [{userId: 1,
-    recipeId: 26,
-    IsFavorite: true,
-    favoriteDescription: "This is a cool fqvorite and it works"}];
+  userFavorites: any[] = [];
 
 
-  recipeFavorite: any[] = [];
+
+  recipeFavorite: Favoriterecipe[] =[];
 
 
-  constructor(private recipeApiService: RecipeApiService, private http: HttpClient) { }
+
+  constructor(private recipeApiService: RecipeApiService, private http: HttpClient, private router: Router) { 
+    this.recipeFavorite = [];
+  }
 
   ngOnInit(): void {
-    this.GetUserFavorites();
+    // this.GetUserFavorites();
     this.GetRecipeDetailsByRecipeId();
   }
 
-  GetUserFavorites() {
+  /* GetUserFavorites() {
     this.recipeApiService.GetUserFavorites(1)
       .subscribe(
         (response) => {
@@ -40,25 +43,53 @@ export class FavoritesComponent implements OnInit{
  
         }
       );
-  }
+  } */
 
   GetRecipeDetailsByRecipeId() {
 
-    for (const favorite of this.userFavorites) {
-      console.log(favorite.recipeId);
+    this.recipeApiService.GetFavoriteRecipe(1)
+      .subscribe(
+        (response) => {
+          this.recipeFavorite = response;
 
-      /* this.recipeApiService.GetRecipeById(favorite.recipeId)
-    .subscribe(
-      (response) => {
-        this.recipeFavorite = response;
-
-        console.log("RECIPE FAVORITE!!!", this.recipeFavorite)
-      }) */
-
-    }
-
-
+          console.log(response);
+ 
+        }
+      );
   }
 
+/*   DeleteFavorite(favoriteId: number) {
+
+    this.recipeApiService.deleteFavorite(favoriteId)
+      .subscribe(
+        (response) => {
+          this.recipeFavorite = response;
+
+          console.log(response);
+ 
+        }
+      );
+      this.GetRecipeDetailsByRecipeId();
+    this.router.navigateByUrl('favorites', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['favorites']);
+    });
+
+
+
+  
+} */
+
+DeleteFavorite(favorite: Favoriterecipe) {
+  favorite.isFavorite = !favorite.isFavorite; // Toggle the isFavorite property
+console.log(favorite.favoriteId)
+  // Update the favorite in the database
+  this.recipeApiService.deleteFavorite(favorite.favoriteId).subscribe(
+    (response: any) => {
+      console.log('Favorite updated:', favorite);
+    }
+  );
+
+  
+}
 
 }

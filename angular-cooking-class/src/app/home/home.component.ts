@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  updateFavoriteStatus(userId: number, recipesid: number, recname: string, recdescription: string) {
+  updateFavoriteStatus(userId: number, recipesid: number, recname: string, recdescription: string, thumbnailUrl: string, thumbnail_alt_text: string) {
     if (recipesid != undefined) {
 
       let newUserRecipe: UserRecipe = {
@@ -52,7 +52,10 @@ export class HomeComponent implements OnInit {
         recipeId: 1,
         Id: recipesid,
         Name: recname,
-        Description: recdescription
+        Description: recdescription,
+        thumbnailUrl: thumbnailUrl,
+        thumbnailAltText: thumbnail_alt_text,
+
 
       };
 

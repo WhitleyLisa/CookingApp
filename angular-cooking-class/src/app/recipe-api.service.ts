@@ -4,6 +4,7 @@ import { Recipe, Result } from './recipe';
 import { Observable } from 'rxjs';
 import { Favorite } from './favorite';
 import { UserRecipe } from './user-recipe';
+import { Favoriterecipe } from './favoriterecipe';
 
 @Injectable({
   providedIn: 'root'
@@ -42,4 +43,7 @@ export class RecipeApiService{
     return this.http.delete<any>(`${this.url}/Favorites/DeleteFavorite/${id}`);
   }
   
+  GetFavoriteRecipe(id: number): Observable<any> {
+    return this.http.get<Favoriterecipe>(`${this.url}/Recipe/GetFavoriteRecipe/${id}`);
+  }
 }
