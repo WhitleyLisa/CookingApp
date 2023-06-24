@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CookingAppApi.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace CookingAppApi.Models;
@@ -30,6 +31,8 @@ public partial class RecipeDbContext : DbContext
     public virtual DbSet<Section> Sections { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
+
+    public virtual DbSet<FavoriteRecipe> FavoriteRecipe { get; set; } 
 
     string connectionString = Secret.ConnectionString;
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -148,6 +151,13 @@ public partial class RecipeDbContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("userPhone");
         });
+
+        modelBuilder.Entity<FavoriteRecipe>(f =>
+        {
+            f.HasNoKey();
+            f.ToView("FavoriteRecipe");
+         });
+       
 
         OnModelCreatingPartial(modelBuilder);
     }
