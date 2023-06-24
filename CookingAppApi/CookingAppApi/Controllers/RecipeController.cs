@@ -128,5 +128,17 @@ namespace CookingAppApi.Controllers
 
             return NoContent();
         }
+
+        [HttpGet("GetLastRecipe")]
+        public async Task<ActionResult<Recipe>> GetLastRecipe()
+        {
+            var lastRecipe = await _context.Recipes.OrderByDescending(r => r.RecipeId).FirstOrDefaultAsync();
+            if (lastRecipe == null)
+            {
+                return NotFound(); // Or any other appropriate response
+            }
+
+            return lastRecipe;
+        }
     }
 }
