@@ -2,11 +2,34 @@
 
 <h2>User Favorites</h2>
 <div *ngFor="let favorite of userFavorites">
-  <div *ngIf="favorite.isFavorite">
+  <div *ngIf="favorite.IsFavorite">
     <p>User ID: {{ favorite.userId }}</p>
     <p>Recipe ID: {{ favorite.recipeId }}</p>
-    <p>Is Favorite: {{ favorite.isFavorite }}</p>
+    <p>Is Favorite: {{ favorite.IsFavorite }}</p>
     <p>Description: {{ favorite.favoriteDescription }}</p>
     
   </div>
 </div>
+
+
+ <!-- <ul>
+  <li *ngFor="let favorite of userFavorites">
+      <div>
+        <div>
+            <h1>{{ favorite.name }}</h1>
+            <img src="{{ favorite.thumbnail_url }}" alt="{{ favorite.thumbnail_alt_text }}" class="small-image">
+  
+            <h3>Description: {{ favorite.description }}</h3>
+            <ul>
+              <li *ngFor="let instruction of favorite.instructions">
+                {{ instruction.display_text }}
+              </li>
+            </ul>
+            <button (click)="updateFavoriteStatus(1, favorite.id!, favorite.name!, favorite.description!)">
+              Add to Favorites
+            </button>
+        </div>
+        
+      </div>
+    </li>
+  </ul> -->
