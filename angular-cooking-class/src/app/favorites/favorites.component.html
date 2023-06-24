@@ -1,1 +1,12 @@
 <p>favorites works!</p>
+
+<h2>User Favorites</h2>
+<div *ngFor="let favorite of userFavorites">
+  <div *ngIf="favorite.isFavorite">
+    <p>User ID: {{ favorite.userId }}</p>
+    <p>Recipe ID: {{ favorite.recipeId }}</p>
+    <p>Is Favorite: {{ favorite.isFavorite }}</p>
+    <p>Description: {{ favorite.favoriteDescription }}</p>
+    
+  </div>
+</div>

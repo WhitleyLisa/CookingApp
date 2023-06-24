@@ -19,8 +19,11 @@
               {{ instruction.display_text }}
             </li>
           </ul>
-
+          <button (click)="updateFavoriteStatus(1, result.id!, result.name!, result.description!)">
+            Add to Favorites
+          </button>
       </div>
+      
     </div>
   </li>
 </ul>
