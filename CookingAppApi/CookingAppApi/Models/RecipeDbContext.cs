@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using CookingAppApi.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace CookingAppApi.Models;

@@ -8,7 +8,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Text.Json.Serialization;
 using System.Text.Json;
-using CookingAppApi.Model;
 
 namespace CookingAppApi.Controllers
 {
