@@ -15,34 +15,42 @@ export class RecipeApiService{
 
   private readonly url = 'https://localhost:7276/api';
   
+  // Retrieves recipe results based on the given recipe name and count.
   GetRecipe(recipeName: string, count: number): Observable<Result[]>{
     return this.http.get<Result[]>(this.url + '/Home/GetRecipe/' + recipeName + '/' + count);
   }
 
+  // Retrieves user's favorite recipes based on the user ID.
   GetUserFavorites(UserId: number): Observable<Result[]>{
     return this.http.get<Result[]>(this.url + '/Favorites/GetUserFavorites/' + UserId);
   }
 
+  // Adds a new favorite recipe for a user.
   AddFavorites(favorites: Favorite): Observable<Favorite>{
     return this.http.post<Favorite>(this.url + '/Favorites/AddFavorite', favorites );
   }
 
+  // Adds a new recipe.
   AddRecipe(userrecipes: UserRecipe): Observable<UserRecipe>{
     return this.http.post<UserRecipe>(this.url + '/Recipe',userrecipes);
   }
 
+  // Retrieves recipe details based on the recipe ID.
   GetRecipeById(RecipeId: number): Observable<Result[]>{
     return this.http.get<Result[]>(this.url + '/Recipe/GetRecipeById/' + RecipeId);
   }
 
+  // Retrieves the last added recipe.
   GetLastRecipe(): Observable<UserRecipe>{
     return this.http.get<UserRecipe>(this.url + '/Recipe/GetLastRecipe');
   }
 
+  // Deletes a favorite recipe based on the ID.
   deleteFavorite(id: number): Observable<any> {
     return this.http.delete<any>(`${this.url}/Favorites/DeleteFavorite/${id}`);
   }
   
+  // Retrieves favorite recipe details based on the ID.
   GetFavoriteRecipe(id: number): Observable<any> {
     return this.http.get<Favoriterecipe>(`${this.url}/Recipe/GetFavoriteRecipe/${id}`);
   }

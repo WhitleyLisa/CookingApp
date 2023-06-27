@@ -16,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     NavigationComponent,
     LoginComponent,
     RecipeDetailComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    
   ],
   imports: [
     BrowserModule,

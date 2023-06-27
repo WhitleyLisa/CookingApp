@@ -14,19 +14,19 @@ import { UserRecipe } from '../user-recipe';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  // An array to store the results of recipes
   results: Result[] = [];
-  /* recipes: Recipe[] = [];
-  nutritions: Nutrition[] = [];
-  instructions: Instruction[] = [];
-  ingerdients: Ingredient[] = [];
-  sections: Section[] = [];
-  components: Component[] = [];  */
+ 
+  // Injecting the RecipeApiService and HttpClient dependencies
   constructor(private recipeApiService: RecipeApiService, private http: HttpClient,) { }
 
-
+  // Lifecycle hook that is called after the component is initialized
+  // Can be used to perform initialization tasks
   ngOnInit(): void {
   }
 
+  //Retrieves recipes based on the provided recipe name.
   getRecipe(recipeName: string) {
     const recipeCount = 2;
     this.recipeApiService.GetRecipe(recipeName, recipeCount).subscribe(
@@ -37,6 +37,8 @@ export class HomeComponent implements OnInit {
     );
   }
 
+//Handles the form submission event.
+//Retrieves recipes based on the submitted recipe name.
   onSubmit(form: NgForm) {
     if (form.valid) {
       const recipeName = form.value.recipeName;
@@ -44,9 +46,10 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  //Updates the favorite status of a recipe for a given user.
   updateFavoriteStatus(userId: number, recipesid: number, recname: string, recdescription: string, thumbnailUrl: string, thumbnail_alt_text: string) {
     if (recipesid != undefined) {
-
+      // Create a new Favorite object for the user and the added recipe
       let newUserRecipe: UserRecipe = {
 
         recipeId: 1,
@@ -59,10 +62,12 @@ export class HomeComponent implements OnInit {
 
       };
 
+      // Add the new recipe to the recipe API service
       this.recipeApiService.AddRecipe(newUserRecipe).subscribe(
         (response: UserRecipe) => {
           console.log('Recipe Added:', response);
          
+          // Create a new Favorite object for the user and the added recipe
           const newFavorite: Favorite = {
             userId: userId,
             recipeId: response.recipeId,
@@ -70,6 +75,7 @@ export class HomeComponent implements OnInit {
             favoriteDescription: "This is my favorite"
           };
 
+          // Update the favorite status by adding the new favorite to the recipe API service
           this.recipeApiService.AddFavorites(newFavorite).subscribe(
             (response: any) => {
               console.log('Favorite updated:', response);

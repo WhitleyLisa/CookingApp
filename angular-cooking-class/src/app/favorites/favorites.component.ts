@@ -16,22 +16,55 @@ import { Router } from '@angular/router';
   styleUrls: ['./favorites.component.css']
 })
 export class FavoritesComponent implements OnInit{
-  userFavorites: any[] = [];
+      userFavorites: any[] = [];
 
 
 
-  recipeFavorite: Favoriterecipe[] =[];
+      recipeFavorite: Favoriterecipe[] =[];
+
+
+      // allows the component to access the necessary services
+      constructor(private recipeApiService: RecipeApiService, private http: HttpClient) { 
+        this.recipeFavorite = [];
+      }
+
+      ngOnInit(): void {
+        // this.GetUserFavorites();
+        this.GetRecipeDetailsByRecipeId();
+      }
+
+
+      // Retrieves the details of the favorite recipes by recipe ID
+      GetRecipeDetailsByRecipeId() {
+        this.recipeApiService.GetFavoriteRecipe(1)
+          .subscribe(
+            (response) => {
+              this.recipeFavorite = response;
+
+              console.log(response);
+    
+            }
+          );
+      }
+
+    // Deletes a favorite recipe from the user's favorites
+    DeleteFavorite(favorite: Favoriterecipe) {
+      favorite.isFavorite = !favorite.isFavorite; // Toggle the isFavorite property
+        console.log(favorite.favoriteId)
+        // Update the favorite in the database
+          this.recipeApiService.deleteFavorite(favorite.favoriteId).subscribe(
+            (response: any) => {
+            console.log('Favorite updated:', favorite);
+            this.GetRecipeDetailsByRecipeId();
+            }
+          );
+
+      
+ }
 
 
 
-  constructor(private recipeApiService: RecipeApiService, private http: HttpClient, private router: Router) { 
-    this.recipeFavorite = [];
-  }
-
-  ngOnInit(): void {
-    // this.GetUserFavorites();
-    this.GetRecipeDetailsByRecipeId();
-  }
+// future and past implementations saved for later use
 
   /* GetUserFavorites() {
     this.recipeApiService.GetUserFavorites(1)
@@ -45,18 +78,6 @@ export class FavoritesComponent implements OnInit{
       );
   } */
 
-  GetRecipeDetailsByRecipeId() {
-
-    this.recipeApiService.GetFavoriteRecipe(1)
-      .subscribe(
-        (response) => {
-          this.recipeFavorite = response;
-
-          console.log(response);
- 
-        }
-      );
-  }
 
 /*   DeleteFavorite(favoriteId: number) {
 
@@ -79,17 +100,8 @@ export class FavoritesComponent implements OnInit{
   
 } */
 
-DeleteFavorite(favorite: Favoriterecipe) {
-  favorite.isFavorite = !favorite.isFavorite; // Toggle the isFavorite property
-console.log(favorite.favoriteId)
-  // Update the favorite in the database
-  this.recipeApiService.deleteFavorite(favorite.favoriteId).subscribe(
-    (response: any) => {
-      console.log('Favorite updated:', favorite);
-    }
-  );
 
-  
-}
+
+
 
 }
