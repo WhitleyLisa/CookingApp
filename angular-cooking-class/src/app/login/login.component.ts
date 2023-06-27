@@ -9,6 +9,7 @@ export class LoginComponent {
     username: string;
     password: string;
 
+
     constructor() {
       this.username = '';
       this.password = '';
@@ -19,4 +20,8 @@ export class LoginComponent {
       console.log(`Username: ${this.username}`);
       console.log(`Password: ${this.password}`);
     }
+
+
+
+
 }
