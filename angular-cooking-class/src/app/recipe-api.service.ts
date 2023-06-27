@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Favorite } from './favorite';
 import { UserRecipe } from './user-recipe';
 import { Favoriterecipe } from './favoriterecipe';
+import { Users } from './users';
 
 @Injectable({
   providedIn: 'root'
@@ -53,5 +54,14 @@ export class RecipeApiService{
   // Retrieves favorite recipe details based on the ID.
   GetFavoriteRecipe(id: number): Observable<any> {
     return this.http.get<Favoriterecipe>(`${this.url}/Recipe/GetFavoriteRecipe/${id}`);
+  }
+
+  // Adds a User.
+  AddUser(users: Users): Observable<Users>{
+    return this.http.post<Users>(this.url + '/Users',users);
+  }
+
+  GetUsers(userName: string): Observable<Users>{
+    return this.http.get<Users>(this.url + '/Users/GetUserName/' + userName);
   }
 }

@@ -9,15 +9,16 @@ import { LoginComponent } from './login/login.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { FormsModule } from '@angular/forms';
+import { RegistrationComponent } from './registration/registration.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NavigationComponent,
     LoginComponent,
+    RegistrationComponent,
     RecipeDetailComponent,
-    FavoritesComponent,
-    
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,
