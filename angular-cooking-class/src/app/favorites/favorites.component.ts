@@ -7,6 +7,7 @@ import { Result } from '../recipe';
 import { UserRecipe } from '../user-recipe';
 import { Favoriterecipe } from '../favoriterecipe';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 
 
@@ -17,6 +18,8 @@ import { Router } from '@angular/router';
 })
 export class FavoritesComponent implements OnInit{
       userFavorites: any[] = [];
+      username!: string;
+      userId!: number;
 
 
 
@@ -24,19 +27,20 @@ export class FavoritesComponent implements OnInit{
 
 
       // allows the component to access the necessary services
-      constructor(private recipeApiService: RecipeApiService, private http: HttpClient) { 
+      constructor(private recipeApiService: RecipeApiService, private http: HttpClient, private cookieService: CookieService) { 
         this.recipeFavorite = [];
       }
 
       ngOnInit(): void {
-        // this.GetUserFavorites();
+        this.username = this.cookieService.get('username');
+        this.userId = Number(this.cookieService.get('userId'));
         this.GetRecipeDetailsByRecipeId();
       }
 
 
       // Retrieves the details of the favorite recipes by recipe ID
       GetRecipeDetailsByRecipeId() {
-        this.recipeApiService.GetFavoriteRecipe(1)
+        this.recipeApiService.GetFavoriteRecipe(this.userId)
           .subscribe(
             (response) => {
               this.recipeFavorite = response;

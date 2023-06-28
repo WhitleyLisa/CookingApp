@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { RecipeApiService } from '../recipe-api.service';
 import { HttpClient } from '@angular/common/http';
 import { Users } from '../users';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,7 @@ export class LoginComponent {
       userPhone: ''
     };
 
-    constructor(private recipeApiService: RecipeApiService, private http: HttpClient, private router: Router) {
+    constructor(private recipeApiService: RecipeApiService, private http: HttpClient, private router: Router, private cookieService: CookieService) {
       this.username = '';
       this.password = '';
     }
@@ -37,6 +38,8 @@ export class LoginComponent {
       (response: Users) => {
         console.log('Get User:', response);
         if (response.userPassword === this.password) {
+          this.cookieService.set('username', this.username);
+          this.cookieService.set('userId', response.userId.toString());
           this.router.navigate(['/home']);
           this.userMessage = '';
          }

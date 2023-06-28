@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { Favorite } from '../favorite';
 import { UserRecipe } from '../user-recipe';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -17,13 +18,18 @@ export class HomeComponent implements OnInit {
 
   // An array to store the results of recipes
   results: Result[] = [];
+  username!: string;
+  userId!: number;
+
  
   // Injecting the RecipeApiService and HttpClient dependencies
-  constructor(private recipeApiService: RecipeApiService, private http: HttpClient,) { }
+  constructor(private recipeApiService: RecipeApiService, private http: HttpClient, private cookieService: CookieService) { }
 
   // Lifecycle hook that is called after the component is initialized
   // Can be used to perform initialization tasks
   ngOnInit(): void {
+    this.username = this.cookieService.get('username');
+    this.userId = Number(this.cookieService.get('userId'));
   }
 
   //Retrieves recipes based on the provided recipe name.
@@ -47,7 +53,7 @@ export class HomeComponent implements OnInit {
   }
 
   //Updates the favorite status of a recipe for a given user.
-  updateFavoriteStatus(userId: number, recipesid: number, recname: string, recdescription: string, thumbnailUrl: string, thumbnail_alt_text: string) {
+  updateFavoriteStatus(recipesid: number, recname: string, recdescription: string, thumbnailUrl: string, thumbnail_alt_text: string) {
     if (recipesid != undefined) {
       // Create a new Favorite object for the user and the added recipe
       let newUserRecipe: UserRecipe = {
@@ -69,7 +75,7 @@ export class HomeComponent implements OnInit {
          
           // Create a new Favorite object for the user and the added recipe
           const newFavorite: Favorite = {
-            userId: userId,
+            userId: this.userId,
             recipeId: response.recipeId,
             IsFavorite: true,
             favoriteDescription: "This is my favorite"

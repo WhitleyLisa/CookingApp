@@ -35,10 +35,6 @@ export class RegistrationComponent {
     this.recipeApiService.AddUser(this.user).subscribe(
       (response: Users) => {
         console.log('User Added:', response);
-    
-    // You can perform API calls to register the user with the provided information
-    // This code is just an example and not a complete registration implementation
-    // You should validate the input and make appropriate API calls to store the user data
   },
   (error) => {
     console.log('Registration failed');
