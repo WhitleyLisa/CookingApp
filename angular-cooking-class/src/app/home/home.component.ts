@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { Favorite } from '../favorite';
 import { UserRecipe } from '../user-recipe';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,10 +21,11 @@ export class HomeComponent implements OnInit {
   results: Result[] = [];
   username!: string;
   userId!: number;
+  selectedRecipe!: any;
 
  
   // Injecting the RecipeApiService and HttpClient dependencies
-  constructor(private recipeApiService: RecipeApiService, private http: HttpClient, private cookieService: CookieService) { }
+  constructor(private recipeApiService: RecipeApiService, private http: HttpClient, private cookieService: CookieService, private router: Router) { }
 
   // Lifecycle hook that is called after the component is initialized
   // Can be used to perform initialization tasks
@@ -93,6 +95,9 @@ export class HomeComponent implements OnInit {
     }
   }
 
-
+  navigateRecipeDetail(recipeId: number) {
+    console.log('Recipe ID:', recipeId);
+    this.router.navigate(['/recipe-detail', recipeId]);
+  }
 
 }

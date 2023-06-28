@@ -37,8 +37,8 @@ export class RecipeApiService{
   }
 
   // Retrieves recipe details based on the recipe ID.
-  GetRecipeById(RecipeId: number): Observable<Result[]>{
-    return this.http.get<Result[]>(this.url + '/Recipe/GetRecipeById/' + RecipeId);
+  GetRecipeById(recipeId: number): Observable<Result[]>{
+    return this.http.get<Result[]>(this.url + '/Recipe/GetRecipeById/' + recipeId);
   }
 
   // Retrieves the last added recipe.
