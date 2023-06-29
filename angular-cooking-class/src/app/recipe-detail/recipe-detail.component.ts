@@ -21,17 +21,21 @@ export class RecipeDetailComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    const recipeIdParam = this.route.snapshot.paramMap.get('recipeId');
-    this.recipeId = recipeIdParam !== null ? +recipeIdParam : 0;
-    this.getRecipe(this.recipeId);
+    const recipeIdParam: any = this.route.snapshot.paramMap.get('recipeId');
+    console.log(recipeIdParam + " RecipeIdParam");
+    this.recipeId = recipeIdParam !== null ? recipeIdParam : "";
+    console.log(this.recipeId + " RecipeId");
+    this.getRecipe(recipeIdParam);
   }
 
   getRecipe(recipeId: string) {
+    console.log(recipeId);
     const recipeCount = 1;
     this.recipeApiService.GetRecipe(recipeId, recipeCount).subscribe(
       (response: any) => {
         this.recipes = response.results;
         console.log(this.recipes);
+        console.log("Here cause Ashwath says to");
       }
     );
   }

@@ -95,9 +95,9 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  navigateRecipeDetail(recipeId: number) {
-    console.log('Recipe ID:', recipeId);
-    this.router.navigate(['/recipe-detail', recipeId]);
+  navigateRecipeDetail(name: string) {
+    console.log('Recipe ID:', name);
+    this.router.navigate(['/recipe-detail', name]);
   }
 
 }
