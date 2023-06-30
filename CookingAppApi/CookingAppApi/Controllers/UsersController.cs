@@ -62,7 +62,7 @@ namespace CookingAppApi.Controllers
                 return Problem("Entity set 'RecipeDbContext.Users'  is null.");
             }
 
-            if (_context.Users.Any(u => u.UserName == user.UserName))
+            if (_context.Users.Any(u => u.UserEmail == user.UserEmail))
             {
                 return Conflict("User already exists."); // Return a conflict response indicating that the user already exists
             }

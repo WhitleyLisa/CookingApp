@@ -26,3 +26,13 @@
   .nav-link:hover {
     text-decoration: underline;
   }
+
+  .greeting {
+    color: #010007; /* Match the text color with the tickets */
+    text-decoration: none;
+    margin-right: 10px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 20px; /* Increased font size */
+    font-weight: bold; /* Added font weight */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Added text shadow */
+  }

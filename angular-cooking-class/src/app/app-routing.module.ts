@@ -11,7 +11,8 @@ const routes: Routes = [{ path: 'home', component: HomeComponent },
 { path: 'favorites', component: FavoritesComponent },
 { path: 'recipe-detail', component: RecipeDetailComponent },
 { path: 'recipe-detail/:recipeId', component: RecipeDetailComponent },
-{ path: 'registration', component: RegistrationComponent },];
+{ path: 'registration', component: RegistrationComponent },
+{ path: '', redirectTo: '/login', pathMatch: 'full' }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

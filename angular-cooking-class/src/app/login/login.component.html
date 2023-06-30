@@ -5,13 +5,13 @@
     <input type="text" [(ngModel)]="username" name="username" required>
   </label>
   <br>
-  <label>
+  <label class="login-label">
     Password:
     <input type="password" [(ngModel)]="password" name="password" required>
   </label>
   <br>
-  <button type="submit">Login</button>
-  <a routerLink="/registration">Register</a> 
+  <button class="login-button" type="submit">Login</button>
+  <button class="login-button" routerLink="/registration">Register</button> 
 
   <p *ngIf="userMessage" class="error-message">{{ userMessage }}</p>
 

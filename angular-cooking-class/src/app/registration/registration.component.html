@@ -1,31 +1,35 @@
-<h1>Registration</h1>
-<form (ngSubmit)="register()">
+<h1 >Registration</h1>
+<div>
+<form  (ngSubmit)="register()">
   
-  <label>
+  <div class="form-group">
+    <label class="registration-label">
     Name:
-    <input type="text" [(ngModel)]="user.userName" name="Name" required>
-  </label>
+    <input placeholder="Enter your name" class="form-control" type="text" [(ngModel)]="user.userName" name="Name" required>
+  </label></div>
+  
   <br>
-
-  <label>
+  <div class="form-group"><label class="registration-label">
     Password:
-    <input type="password" [(ngModel)]="user.userPassword" name="password" required>
-  </label>
+    <input placeholder="Enter your Password" type="password" [(ngModel)]="user.userPassword" name="password" required>
+  </label></div>
+  
   <br>
-
-  <label>
+  <div class="form-group"><label class="registration-label">
     Email:
-    <input type="email" [(ngModel)]="user.userEmail" name="email" required>
-  </label>
+    <input placeholder="Enter your email address" type="email" [(ngModel)]="user.userEmail" name="email" required>
+  </label></div>
+ 
   <br>  
-
-  <label>
+  <div class="form-group"><label class="registration-label">
     Phone:
-    <input type="text" [(ngModel)]="user.userPhone" name="userPhone" >
-  </label>
+    <input placeholder="Enter your phone number" type="text" [(ngModel)]="user.userPhone" name="userPhone" >
+  </label></div>
+
   <br>
 
-  <button type="submit">Register</button>
+  <button class="registration-button" type="submit">Register</button>
   <p *ngIf="userMessage" class="error-message">{{ userMessage }}</p>
 </form>
+</div>
 
