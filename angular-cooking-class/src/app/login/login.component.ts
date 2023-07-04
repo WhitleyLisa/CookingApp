@@ -4,6 +4,7 @@ import { RecipeApiService } from '../recipe-api.service';
 import { HttpClient } from '@angular/common/http';
 import { Users } from '../users';
 import { CookieService } from 'ngx-cookie-service';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,7 @@ export class LoginComponent {
       userPhone: ''
     };
 
-    constructor(private recipeApiService: RecipeApiService, private http: HttpClient, private router: Router, private cookieService: CookieService) {
+    constructor(private recipeApiService: RecipeApiService, private http: HttpClient, private router: Router, private cookieService: CookieService, private sharedService: SharedService) {
       this.username = '';
       this.password = '';
     }
@@ -33,11 +34,17 @@ export class LoginComponent {
       // Perform login logic here, e.g., validate credentials, make API calls, etc.
       console.log(`Username: ${this.username}`);
       console.log(`Password: ${this.password}`);
+
+      if (this.cookieService.check('username')) {
+        this.cookieService.delete('username');
+      }
       
     this.recipeApiService.GetUsers(this.username).subscribe(
       (response: Users) => {
         console.log('Get User:', response);
         if (response.userPassword === this.password) {
+          this.sharedService.updateUsername(this.username);
+
           this.cookieService.set('username', this.username);
           this.cookieService.set('userId', response.userId.toString());
           this.router.navigate(['/home']);

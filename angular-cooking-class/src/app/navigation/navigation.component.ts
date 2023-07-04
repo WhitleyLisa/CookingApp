@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-navigation',
@@ -13,10 +14,13 @@ export class NavigationComponent {
   
 
 
-  constructor( private cookieService: CookieService) {}
+  constructor( private cookieService: CookieService, private sharedService: SharedService) {}
 
   ngOnInit(): void {
-    this.username = this.cookieService.get('username').toUpperCase();
+    
+    this.sharedService.username$.subscribe(username => {
+      this.username = username;
+    });
  
   }
 }
