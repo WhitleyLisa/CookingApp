@@ -17,8 +17,10 @@
           <!-- Display the recipe description -->
         <h3>Description: {{ recipe.description }}</h3>
 
-        <ul>
+        <ul   >
           <li *ngFor="let section of recipe.sections">
+                {{ section.name }}
+          
             <ul>
               <li *ngFor="let component of section.components">
                 {{ component.raw_text}}
