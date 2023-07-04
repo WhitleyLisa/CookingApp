@@ -17,6 +17,16 @@
           <!-- Display the recipe description -->
         <h3>Description: {{ recipe.description }}</h3>
 
+        <ul>
+          <li *ngFor="let section of recipe.sections">
+            <ul>
+              <li *ngFor="let component of section.components">
+                {{ component.raw_text}}
+              </li>
+            </ul>
+          </li>
+        </ul>
+
         <!-- Display the recipe instructions as a list -->
         <ul>
           <!-- Loop over each instruction in the result's instructions array -->

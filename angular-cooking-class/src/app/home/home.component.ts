@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
 
   //Retrieves recipes based on the provided recipe name.
   getRecipe(recipeName: string) {
-    const recipeCount = 2;
+    const recipeCount = 5;
     this.recipeApiService.GetRecipe(recipeName, recipeCount).subscribe(
       (response: any) => {
         this.results = response.results;

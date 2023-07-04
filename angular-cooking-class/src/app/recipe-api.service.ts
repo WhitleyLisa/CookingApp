@@ -14,7 +14,7 @@ export class RecipeApiService{
 
   constructor(private http: HttpClient) { }
 
-  private readonly url = 'https://localhost:7276/api';
+  private readonly url = 'https://cookingappapi2023.azurewebsites.net/api';
   
   // Retrieves recipe results based on the given recipe name and count.
   GetRecipe(recipeName: string, count: number): Observable<Result[]>{

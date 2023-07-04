@@ -16,6 +16,7 @@ export class RecipeDetailComponent implements OnInit {
   recipes: Result[] = [];
   userId!: number;
   
+  
   constructor(private route: ActivatedRoute, private recipeApiService: RecipeApiService) {
 
    }
