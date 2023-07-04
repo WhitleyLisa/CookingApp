@@ -14,6 +14,6 @@
        
   </nav>
 
-  <p class="greeting">Welcome: {{this.username}}!</p>
+  <p *ngIf="this.username" class="greeting">Welcome: {{this.username}}!</p>
 
   <!-- <h2>Hello, {{ users.name }}</h2> -->

@@ -27,7 +27,7 @@ export class FavoritesComponent implements OnInit{
 
 
       // allows the component to access the necessary services
-      constructor(private recipeApiService: RecipeApiService, private http: HttpClient, private cookieService: CookieService) { 
+      constructor(private recipeApiService: RecipeApiService, private http: HttpClient, private cookieService: CookieService, private router: Router) { 
         this.recipeFavorite = [];
       }
 
@@ -104,7 +104,10 @@ export class FavoritesComponent implements OnInit{
   
 } */
 
-
+navigateRecipeDetail(name: string) {
+  console.log('Recipe ID:', name);
+  this.router.navigate(['/recipe-detail', name]);
+}
 
 
 

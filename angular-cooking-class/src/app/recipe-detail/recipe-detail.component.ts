@@ -1,10 +1,12 @@
 
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeApiService } from '../recipe-api.service';
 import { Result } from '../recipe';
 import { UserRecipe } from '../user-recipe';
 import { Favorite } from '../favorite';
+import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -15,13 +17,16 @@ export class RecipeDetailComponent implements OnInit {
   recipeId!: any;
   recipes: Result[] = [];
   userId!: number;
+  username!: string;
   
   
-  constructor(private route: ActivatedRoute, private recipeApiService: RecipeApiService) {
+  constructor(private route: ActivatedRoute, private recipeApiService: RecipeApiService, private cookieService: CookieService, private router: Router) {
 
    }
 
   ngOnInit(): void {
+    this.username = this.cookieService.get('username');
+    this.userId = Number(this.cookieService.get('userId'));
     const recipeIdParam: any = this.route.snapshot.paramMap.get('recipeId');
     console.log(recipeIdParam + " RecipeIdParam");
     this.recipeId = recipeIdParam !== null ? recipeIdParam : "";
@@ -80,4 +85,6 @@ export class RecipeDetailComponent implements OnInit {
       );
     }
   }
+
+
 }
